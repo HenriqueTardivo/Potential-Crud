@@ -7,9 +7,10 @@ import { api } from '../../serivce/api';
 interface DeveloperModalProps{
     isOpen: boolean;
     onRequestClose: ()=> void;
+    newDeveloper: ()=> void;
 }
 
-export function DeveloperModal ({isOpen,onRequestClose}:DeveloperModalProps){
+export function DeveloperModal ({isOpen,onRequestClose,newDeveloper}:DeveloperModalProps){
     const [sexo, setSexo] = useState('');
     const [nome, setNome] = useState('');
     const [hobby, setHobby] = useState('');
@@ -26,6 +27,7 @@ export function DeveloperModal ({isOpen,onRequestClose}:DeveloperModalProps){
             datanascimento
         };
         api.post('/developers',data)
+        newDeveloper();
         onRequestClose();
     }
 

@@ -8,6 +8,7 @@ import { DeveloperModal } from './components/DeveloperModal';
 Modal.setAppElement('#root');
 export function App() {
   const [isDeveloperModalOpen,setIsDeveloperModalOpen] = useState(false);
+  const [refresh,setRefresh] = useState(false);
 
   function handleOpenDeveloperModal(){
     setIsDeveloperModalOpen(true);
@@ -16,12 +17,16 @@ export function App() {
     setIsDeveloperModalOpen(false);
   }
 
+  function handleRefresh (){
+    setRefresh(!refresh);
+  }
+  
   return (
     <>
       <GlobalStyle />
       <Header onOpenNewDeveloper={handleOpenDeveloperModal}/>
-      <DevelopersList />
-      <DeveloperModal isOpen={isDeveloperModalOpen} onRequestClose={handleCloseDeveloperModal}/>
+      <DevelopersList refresh={refresh} handleRefresh={handleRefresh}/>
+      <DeveloperModal isOpen={isDeveloperModalOpen} onRequestClose={handleCloseDeveloperModal} newDeveloper={handleRefresh}/>
 
     </>
   );

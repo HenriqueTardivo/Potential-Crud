@@ -3,7 +3,10 @@ import { useEffect, useState } from 'react';
 import { EditDelete } from '../EditDelete';
 import { api } from '../../serivce/api';
 
-
+interface DeveloperListProps {
+    refresh: boolean;
+    handleRefresh(): void;
+}
 interface  Developer {
     id: number;
     nome: string,
@@ -13,7 +16,7 @@ interface  Developer {
     datanascimento: string;
 }
 
-export function DevelopersList(){
+export function DevelopersList({refresh,handleRefresh}:DeveloperListProps){
     const [developers,setDevelopers] = useState<Developer[]>([]);
 
     function displaySexo(sexo: string){
@@ -26,7 +29,7 @@ export function DevelopersList(){
 
     useEffect(()=>{
         api.get('/developers').then(response => {setDevelopers(response.data)})
-    },[])
+    },[refresh])
     
     return (
         <>
@@ -55,7 +58,7 @@ export function DevelopersList(){
                                     new Date(developer.datanascimento)
                                 )}
                             </td>
-                            <EditDelete developer={developer}/>
+                            <EditDelete developer={developer} editDeveloper={handleRefresh}/>
                         </tr>  
                     ))} 
                 </tbody>

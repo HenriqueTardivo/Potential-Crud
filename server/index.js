@@ -28,7 +28,6 @@ app.get('/developers', (req,res)=>{
 
 app.get('/developers/:id', (req,res)=>{
     const id = req.params.id;
-    console.log(req.params.id)
     db.query('SELECT * FROM developers WHERE ID = ?',id, 
             (err, result) => {
                 if (err){

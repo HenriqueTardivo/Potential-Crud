@@ -6,6 +6,7 @@ import deleteImg from '../../assets/delete.png'
 import { EditDeveloperModal } from '../EditDeveloperModal';
 
 interface EditDeleteProps {
+  editDeveloper: ()=> void; 
   developer: {
     id: number;
     nome: string,
@@ -35,8 +36,8 @@ export function EditDelete(props: EditDeleteProps){
     }
     return (
         <>
-        <DeleteDeveloperModal isOpen={isDeleteDeveloperModalOpen} onRequestClose={handleCloseDeleteDeveloperModal} developerId={props.developer.id} />  
-        <EditDeveloperModal isOpen={isEditDeveloperModalOpen} onRequestClose={handleCloseEditDeveloperModal} developerId={props.developer.id}/>
+        <DeleteDeveloperModal isOpen={isDeleteDeveloperModalOpen} onRequestClose={handleCloseDeleteDeveloperModal} developerId={props.developer.id} newDeveloper={props.editDeveloper}/>  
+        <EditDeveloperModal isOpen={isEditDeveloperModalOpen} onRequestClose={handleCloseEditDeveloperModal} developerId={props.developer.id} newDeveloper={props.editDeveloper} />
 
         <td>
             <button onClick={handleOpenEditDeveloperModal}>

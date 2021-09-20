@@ -7,11 +7,13 @@ interface DeleteDeveloperModal {
     isOpen: boolean;
     onRequestClose: ()=> void;
     developerId: number;
+    newDeveloper: ()=> void;
 }
 
-export function DeleteDeveloperModal({isOpen,onRequestClose,developerId}:DeleteDeveloperModal) {
+export function DeleteDeveloperModal({isOpen,onRequestClose,developerId,newDeveloper}:DeleteDeveloperModal) {
     function deleteDeveloper() {
         api.delete(`/developers/${developerId}`);
+        newDeveloper();
         onRequestClose();
     }
 

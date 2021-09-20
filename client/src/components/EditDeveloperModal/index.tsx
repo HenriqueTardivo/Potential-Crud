@@ -15,6 +15,7 @@ interface Developer {
 interface EditDeveloperModalProps{
     isOpen: boolean;
     onRequestClose: ()=> void;
+    newDeveloper: ()=> void;
     developerId: number;
 }
 
@@ -37,6 +38,7 @@ export function EditDeveloperModal (props:EditDeveloperModalProps){
             datanascimento
         };
         api.post(`/developers/${props.developerId}`,data)
+        props.newDeveloper();
         props.onRequestClose();
     }
 
