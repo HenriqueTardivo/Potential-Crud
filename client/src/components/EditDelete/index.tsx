@@ -1,8 +1,8 @@
 import Modal from 'react-modal';
 import { DeleteDeveloperModal } from '../DeleteDeveloperModal';
 import { useState } from 'react';
-import editImg from '../../assets/edit.svg'
-import deleteImg from '../../assets/delete.svg'
+import editImg from '../../assets/edit.png'
+import deleteImg from '../../assets/delete.png'
 import { EditDeveloperModal } from '../EditDeveloperModal';
 
 interface EditDeleteProps {

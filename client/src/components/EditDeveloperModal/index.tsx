@@ -19,12 +19,13 @@ interface EditDeveloperModalProps{
 }
 
 export function EditDeveloperModal (props:EditDeveloperModalProps){
-    const [editDev,setEditDev] = useState<Developer>()
+    const [editDev,setEditDev] = useState<Developer[]>()
+    const [id, setId] = useState(0)
     const [sexo, setSexo] = useState('');
     const [nome, setNome] = useState('');
     const [hobby, setHobby] = useState('');
     const [idade, setIdade] = useState(0);
-    const [datanascimento, setDatanascimento] = useState('')
+    const [datanascimento, setDatanascimento] = useState('') 
 
     function handleEditDeveloper(event: FormEvent) {
         event.preventDefault();
@@ -40,27 +41,32 @@ export function EditDeveloperModal (props:EditDeveloperModalProps){
     }
 
     useEffect(()=> {
-        api.get(`developer/${props.developerId}`).then(response => {setEditDev(response.data) 
-        })
+        api.get(`developers/${props.developerId}`).then(response => {setEditDev(response.data)
+            editDev?.map((value,key) =>{
+                setId(key)
+                setSexo(value.sexo);
+                setDatanascimento(value.datanascimento);
+                setIdade(value.idade);
+                setNome(value.nome);
+                setHobby(value.hobby);
+            })
+              
+        });
 
     }
-        ,[props.developerId]
+        ,[props.isOpen]
     )
-    if (editDev?.id){
-        setSexo(editDev?.sexo)
-        setNome(editDev?.nome)
-        setHobby(editDev?.hobby)
-        setIdade(editDev?.idade)
-        setDatanascimento(editDev?.datanascimento)
-    }       
-    
+
+
+ 
     return(
         <Modal isOpen={props.isOpen} onRequestClose={props.onRequestClose} overlayClassName="react-modal-overlay" className="react-modal-content">
+            
             <button type="button" onClick={props.onRequestClose} className="react-modal-close">
                 <img src={closeImg} alt="Fechar modal" />
             </button>
             <Container onSubmit={handleEditDeveloper}>
-                <h2>Desenvolvedor</h2>
+                <h2>Editar Desenvolvedor</h2>
                 <input placeholder="nome" type="text" value={nome} onChange={event => setNome(event.target.value)}></input>
 
                 <RadioGroup>  

@@ -27,6 +27,7 @@ export function DevelopersList(){
     useEffect(()=>{
         api.get('/developers').then(response => {setDevelopers(response.data)})
     },[])
+    
     return (
         <>
         <Container>

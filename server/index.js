@@ -28,6 +28,7 @@ app.get('/developers', (req,res)=>{
 
 app.get('/developers/:id', (req,res)=>{
     const id = req.params.id;
+    console.log(req.params.id)
     db.query('SELECT * FROM developers WHERE ID = ?',id, 
             (err, result) => {
                 if (err){
@@ -58,6 +59,28 @@ app.post('/developers', (req, res)=> {
         }
     );
 });
+
+app.post('/developers/:id', (req, res)=> {
+    const id = req.params.id;
+    const nome = req.body.nome;
+    const sexo = req.body.sexo;
+    const idade = req.body.idade;
+    const hobby = req.body.hobby;
+    const datanascimento = req.body.datanascimento;
+    db.query(
+        'UPDATE developers SET nome = ? ,sexo = ? ,idade = ? ,hobby = ?,datanascimento = ? WHERE id = ?',
+        [nome,sexo,idade,hobby,datanascimento,id],
+        (err, result) =>{
+            if (err){
+                res.send('Erro na inserção ' + err)
+            }else{
+                res.send('Valores inseridos')
+            }
+            console.log(err + result)
+        }
+    );
+});
+
 
 app.delete('/developers/:id', (req,res)=>{
     const id = req.params.id;
