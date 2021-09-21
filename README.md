@@ -1,7 +1,7 @@
 # crud_potential
  Potencial para um crud
 
-Foi desenvolvido um Crud que para manutenção dos dados de uma tabela de desenvolvedores, a tabela possui a seguinte estrutura:
+Foi desenvolvido um Crud para manutenção dos dados de uma tabela de desenvolvedores, a tabela possui a seguinte estrutura:
 
 ```
 nome: varchar
