@@ -37,7 +37,7 @@ export function EditDeveloperModal (props:EditDeveloperModalProps){
             hobby,
             datanascimento
         };
-        api.post(`/developers/${props.developerId}`,data)
+        api.put(`/developers/${props.developerId}`,data)
         props.newDeveloper();
         props.onRequestClose();
     }

@@ -59,7 +59,7 @@ app.post('/developers', (req, res)=> {
     );
 });
 
-app.post('/developers/:id', (req, res)=> {
+app.put('/developers/:id', (req, res)=> {
     const id = req.params.id;
     const nome = req.body.nome;
     const sexo = req.body.sexo;
